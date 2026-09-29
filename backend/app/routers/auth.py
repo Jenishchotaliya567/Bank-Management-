@@ -15,9 +15,9 @@ def register(user_in: UserCreate, db: Session = Depends(get_db)):
 
     user = User(
         full_name=user_in.full_name,
-        email=user_in.email,
+        email=str(user_in.email).lower(),
         hashed_password=get_password_hash(user_in.password),
-        role=user_in.role or "bank_manager"
+        role="bank_manager"
     )
     db.add(user)
     db.commit()
@@ -28,7 +28,7 @@ def register(user_in: UserCreate, db: Session = Depends(get_db)):
 
 @router.post("/login", response_model=Token)
 def login(credentials: UserLogin, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.email == credentials.email).first()
+    user = db.query(User).filter(User.email == str(credentials.email).lower()).first()
     if not user or not verify_password(credentials.password, user.hashed_password):
         raise HTTPException(status_code=401, detail="Invalid email or password.")
 

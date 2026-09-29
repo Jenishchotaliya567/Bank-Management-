@@ -6,8 +6,7 @@ from pydantic import BaseModel, EmailStr, Field
 class UserCreate(BaseModel):
     full_name: str
     email: EmailStr
-    password: str
-    role: Optional[str] = "bank_manager"
+    password: str = Field(..., min_length=8)
 
 class UserLogin(BaseModel):
     email: EmailStr

@@ -19,7 +19,9 @@ const Login = () => {
       await login(email, password);
       navigate('/');
     } catch (err) {
-      setError(err.response?.data?.detail || 'Login failed. Please check credentials.');
+      setError(err.response?.data?.detail || (err.code === 'ERR_NETWORK'
+        ? 'Cannot reach the banking server. Start the backend and try again.'
+        : 'Login failed. Please check your credentials and try again.'));
     } finally {
       setLoading(false);
     }

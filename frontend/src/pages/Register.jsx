@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Building2, UserPlus, User, Mail, Lock, Shield } from 'lucide-react';
+import { Building2, UserPlus, User, Mail, Lock } from 'lucide-react';
 
 const Register = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('bank_manager');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { register } = useAuth();
@@ -18,10 +17,12 @@ const Register = () => {
     setError('');
     setLoading(true);
     try {
-      await register(fullName, email, password, role);
+      await register(fullName, email, password);
       navigate('/');
     } catch (err) {
-      setError(err.response?.data?.detail || 'Registration failed.');
+      setError(err.response?.data?.detail || (err.code === 'ERR_NETWORK'
+        ? 'Cannot reach the banking server. Start the backend and try again.'
+        : 'Registration failed. Please try again.'));
     } finally {
       setLoading(false);
     }
@@ -54,7 +55,7 @@ const Register = () => {
           </div>
           <h2 style={{ fontSize: '1.6rem', fontWeight: '800', color: '#fff' }}>Register Account</h2>
           <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.3rem' }}>
-            Create your banking officer credentials
+            Create your account to access the banking portal
           </p>
         </div>
 
@@ -114,27 +115,11 @@ const Register = () => {
                 className="form-control"
                 style={{ paddingLeft: '2.8rem' }}
                 placeholder="••••••••"
+                minLength={8}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-            </div>
-          </div>
-
-          <div className="form-group">
-            <label className="form-label">Role</label>
-            <div style={{ position: 'relative' }}>
-              <Shield size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
-              <select
-                className="form-select"
-                style={{ paddingLeft: '2.8rem' }}
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-              >
-                <option value="bank_manager">Bank Manager</option>
-                <option value="credit_analyst">Credit Analyst</option>
-                <option value="teller">Bank Teller</option>
-              </select>
             </div>
           </div>
 
@@ -145,7 +130,7 @@ const Register = () => {
             disabled={loading}
           >
             <UserPlus size={18} />
-            <span>{loading ? 'Registering...' : 'Create Manager Account'}</span>
+            <span>{loading ? 'Registering...' : 'Create Account'}</span>
           </button>
         </form>
 
