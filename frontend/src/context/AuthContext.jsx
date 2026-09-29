@@ -37,14 +37,14 @@ export const AuthProvider = ({ children }) => {
     return userData;
   };
 
-  const register = async (fullName, email, password) => {
-    const res = await authApi.register({ full_name: fullName, email, password });
+  const register = async (fullName, email, password, role = 'bank_manager') => {
+    const res = await authApi.register({ full_name: fullName, email, password, role });
     const { access_token, user: userData } = res.data;
     setToken(access_token);
     setUser(userData);
     localStorage.setItem('token', access_token);
     localStorage.setItem('user', JSON.stringify(userData));
-    return userData;
+    return { token: access_token, user: userData };
   };
 
   const logout = () => {

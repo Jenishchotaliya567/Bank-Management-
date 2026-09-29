@@ -7,6 +7,7 @@ class UserCreate(BaseModel):
     full_name: str
     email: EmailStr
     password: str = Field(..., min_length=8)
+    role: Optional[str] = "bank_manager"
 
 class UserLogin(BaseModel):
     email: EmailStr
