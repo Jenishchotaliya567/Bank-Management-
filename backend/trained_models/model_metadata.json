@@ -1,0 +1,302 @@
+{
+    "problem_type": "Classification",
+    "task_name": "Bank Term Deposit Subscription Prediction",
+    "target_column": "y",
+    "target_mapping": {
+        "0": "No (Will not subscribe)",
+        "1": "Yes (Will subscribe)"
+    },
+    "selected_model": "XGBoost",
+    "metrics": {
+        "accuracy": 0.8515,
+        "precision": 0.4333,
+        "recall": 0.8752,
+        "f1_score": 0.5797,
+        "roc_auc": 0.9301,
+        "confusion_matrix": [
+            [
+                6774,
+                1211
+            ],
+            [
+                132,
+                926
+            ]
+        ]
+    },
+    "all_models_evaluated": {
+        "Logistic Regression": {
+            "accuracy": 0.8457,
+            "precision": 0.4182,
+            "recall": 0.8147,
+            "f1_score": 0.5527,
+            "roc_auc": 0.9079,
+            "confusion_matrix": [
+                [
+                    6786,
+                    1199
+                ],
+                [
+                    196,
+                    862
+                ]
+            ]
+        },
+        "Decision Tree": {
+            "accuracy": 0.8301,
+            "precision": 0.3934,
+            "recall": 0.8336,
+            "f1_score": 0.5345,
+            "roc_auc": 0.8644,
+            "confusion_matrix": [
+                [
+                    6625,
+                    1360
+                ],
+                [
+                    176,
+                    882
+                ]
+            ]
+        },
+        "Random Forest": {
+            "accuracy": 0.8446,
+            "precision": 0.4196,
+            "recall": 0.8554,
+            "f1_score": 0.563,
+            "roc_auc": 0.9246,
+            "confusion_matrix": [
+                [
+                    6733,
+                    1252
+                ],
+                [
+                    153,
+                    905
+                ]
+            ]
+        },
+        "Gradient Boosting": {
+            "accuracy": 0.9102,
+            "precision": 0.668,
+            "recall": 0.4622,
+            "f1_score": 0.5464,
+            "roc_auc": 0.9322,
+            "confusion_matrix": [
+                [
+                    7742,
+                    243
+                ],
+                [
+                    569,
+                    489
+                ]
+            ]
+        },
+        "XGBoost": {
+            "accuracy": 0.8515,
+            "precision": 0.4333,
+            "recall": 0.8752,
+            "f1_score": 0.5797,
+            "roc_auc": 0.9301,
+            "confusion_matrix": [
+                [
+                    6774,
+                    1211
+                ],
+                [
+                    132,
+                    926
+                ]
+            ]
+        }
+    },
+    "total_records": 45211,
+    "num_features": [
+        "age",
+        "balance",
+        "day",
+        "duration",
+        "campaign",
+        "pdays",
+        "previous"
+    ],
+    "cat_features": [
+        "job",
+        "marital",
+        "education",
+        "default",
+        "housing",
+        "loan",
+        "contact",
+        "month",
+        "poutcome"
+    ],
+    "cat_options": {
+        "job": [
+            "admin.",
+            "blue-collar",
+            "entrepreneur",
+            "housemaid",
+            "management",
+            "retired",
+            "self-employed",
+            "services",
+            "student",
+            "technician",
+            "unemployed",
+            "unknown"
+        ],
+        "marital": [
+            "divorced",
+            "married",
+            "single"
+        ],
+        "education": [
+            "primary",
+            "secondary",
+            "tertiary",
+            "unknown"
+        ],
+        "default": [
+            "no",
+            "yes"
+        ],
+        "housing": [
+            "no",
+            "yes"
+        ],
+        "loan": [
+            "no",
+            "yes"
+        ],
+        "contact": [
+            "cellular",
+            "telephone",
+            "unknown"
+        ],
+        "month": [
+            "apr",
+            "aug",
+            "dec",
+            "feb",
+            "jan",
+            "jul",
+            "jun",
+            "mar",
+            "may",
+            "nov",
+            "oct",
+            "sep"
+        ],
+        "poutcome": [
+            "failure",
+            "other",
+            "success",
+            "unknown"
+        ]
+    },
+    "num_ranges": {
+        "age": {
+            "min": 18.0,
+            "max": 95.0,
+            "median": 39.0
+        },
+        "balance": {
+            "min": -8019.0,
+            "max": 102127.0,
+            "median": 448.0
+        },
+        "day": {
+            "min": 1.0,
+            "max": 31.0,
+            "median": 16.0
+        },
+        "duration": {
+            "min": 0.0,
+            "max": 4918.0,
+            "median": 180.0
+        },
+        "campaign": {
+            "min": 1.0,
+            "max": 63.0,
+            "median": 2.0
+        },
+        "pdays": {
+            "min": -1.0,
+            "max": 871.0,
+            "median": -1.0
+        },
+        "previous": {
+            "min": 0.0,
+            "max": 275.0,
+            "median": 0.0
+        }
+    },
+    "feature_importances": [
+        {
+            "feature": "poutcome_success",
+            "importance": 0.15247789025306702
+        },
+        {
+            "feature": "contact_unknown",
+            "importance": 0.11073479801416397
+        },
+        {
+            "feature": "duration",
+            "importance": 0.07341983169317245
+        },
+        {
+            "feature": "poutcome_unknown",
+            "importance": 0.05545993521809578
+        },
+        {
+            "feature": "housing_no",
+            "importance": 0.05465242266654968
+        },
+        {
+            "feature": "month_mar",
+            "importance": 0.054290831089019775
+        },
+        {
+            "feature": "month_jun",
+            "importance": 0.042613688856363297
+        },
+        {
+            "feature": "month_oct",
+            "importance": 0.040844958275556564
+        },
+        {
+            "feature": "month_jul",
+            "importance": 0.026994014158844948
+        },
+        {
+            "feature": "month_sep",
+            "importance": 0.02589118853211403
+        },
+        {
+            "feature": "month_apr",
+            "importance": 0.025759665295481682
+        },
+        {
+            "feature": "month_aug",
+            "importance": 0.02520228549838066
+        },
+        {
+            "feature": "loan_no",
+            "importance": 0.021264338865876198
+        },
+        {
+            "feature": "month_nov",
+            "importance": 0.021097587421536446
+        },
+        {
+            "feature": "job_blue-collar",
+            "importance": 0.019976479932665825
+        }
+    ],
+    "class_distribution": {
+        "no": 39922,
+        "yes": 5289
+    }
+}
